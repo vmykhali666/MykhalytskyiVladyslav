@@ -1,0 +1,36 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    max-height: 100%;
+}
+input{
+    margin:20px;
+    padding:10px;
+}
+.buttons input{
+    border: 0px;
+}
+.buttons input:hover{
+    background-color: aqua;
+    transition: 1000ms ease;
+}
+table{
+    user-select: none;
+    margin-top: 20px;
+    width: 800px;
+    border: 2px solid #000000;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: dimgray;
+} 
+td{
+    border: 2px solid #000000;
+}
