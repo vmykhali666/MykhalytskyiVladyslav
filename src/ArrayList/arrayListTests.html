@@ -45,18 +45,18 @@
         });
         describe("addStart",function() {
             it("передаем 3 в массив [2, 3]",function() {
-                assert.deepEqual(new Alist([2, 3]).addStart(3), [3,2,3]);
+                assert.deepEqual(new Alist([2, 3]).addStart(3), 3);
             });
             it("передаем 1 в массив []",function() {
-                assert.deepEqual(new Alist([]).addStart(1), [1]);
+                assert.deepEqual(new Alist([]).addStart(1), 1);
             });
         });
         describe("addEnd",function() {
             it("передаем 3 в массив [2, 3]",function() {
-                assert.deepEqual(new Alist([2, 3]).addEnd(3), [2,3,3]);
+                assert.deepEqual(new Alist([2, 3]).addEnd(3), 3);
             });
             it("передаем 3 в массив []",function() {
-                assert.deepEqual(new Alist([]).addEnd(3), [3]);
+                assert.deepEqual(new Alist([]).addEnd(3), 1);
             });
         });
         describe("delStart",function() {

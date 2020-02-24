@@ -37,7 +37,7 @@ Alist.prototype.addStart = function (element) {
         }
         this.arr = tempArray;
     }
-    return this.arr;
+    return this.size();
 }
 Alist.prototype.addEnd = function (element) {
     let tempArray = [];
@@ -48,7 +48,7 @@ Alist.prototype.addEnd = function (element) {
         }
         this.arr = tempArray;
     }
-    return this.arr;
+    return this.size();
 }
 Alist.prototype.delStart = function () {
     let tempArray = [];
