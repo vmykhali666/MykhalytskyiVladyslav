@@ -46,14 +46,13 @@ const checkOperation = (user, operation) => {
         case "delete":
             delete_(user);
             break;
-        case "delete":
-            reset(user);
+        case "reset":
+            reset();
             break;
     }
-    makeSimpleUsersList();
-    // let tempList = JSON.stringify(userList);
-    // localStorage.setItem('persone_state', tempList);
-    
+    if(operation != "reset"){
+        makeSimpleUsersList();
+    }
 }
 
 // проверяет есть ли в глобальном массиве обьект с таким же главным ключем
@@ -105,6 +104,7 @@ const update = (user) =>{
     alert("Пользователя с таким айди не было найдено");
 }
 const reset = () => {
+    alert();
     userList.forEach(user => {
         let list = document.querySelector(".mainTable");    
         list.removeChild(user.mainTag);
