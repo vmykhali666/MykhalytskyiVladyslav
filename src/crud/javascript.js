@@ -55,21 +55,7 @@ const checkOperation = (user, operation) => {
     // localStorage.setItem('persone_state', tempList);
     
 }
-// делаем простой обьект
-const makeSimpleUsersList = () => {
-    let tempUserList = [];
-    for(let count = 0; count < userList.length; count++){
-        let tempUser = {
-            id          : userList[count].id.innerHTML,
-            firstName   : userList[count].firstName.innerHTML,
-            lastName    : userList[count].lastName.innerHTML,
-            age         : userList[count].age.innerHTML,
-        }
-        tempUserList[count] = tempUser;
-    }
-    let tempList = JSON.stringify(tempUserList);
-    localStorage.setItem('persone_state', tempList);
-}
+
 // проверяет есть ли в глобальном массиве обьект с таким же главным ключем
 const checkGlobalUsersList = (user) =>{
     for(let tempUser of userList){
@@ -118,6 +104,35 @@ const update = (user) =>{
     }
     alert("Пользователя с таким айди не было найдено");
 }
+const reset = () => {
+    userList.forEach(user => {
+        let list = document.querySelector(".mainTable");    
+        list.removeChild(user.mainTag);
+    });
+    userList = [];
+}
+
+
+
+
+
+
+
+// делаем простой обьект
+const makeSimpleUsersList = () => {
+    let tempUserList = [];
+    for(let count = 0; count < userList.length; count++){
+        let tempUser = {
+            id          : userList[count].id.innerHTML,
+            firstName   : userList[count].firstName.innerHTML,
+            lastName    : userList[count].lastName.innerHTML,
+            age         : userList[count].age.innerHTML,
+        }
+        tempUserList[count] = tempUser;
+    }
+    let tempList = JSON.stringify(tempUserList);
+    localStorage.setItem('persone_state', tempList);
+}
 // рид, удаляет все с таблицы, потом парсит все с ЛокалСторэдж, преобразует в User и добавляет с помощью функции create
 const read = () =>{
     userList.forEach(user => {
@@ -144,6 +159,13 @@ const createNewUserForRead = (_id, _firstName, _lastName, _age) =>{
     return user;
 }
 //
+
+
+
+
+
+
+
 const addTagsToMainTag = (user) => {
     user.mainTag.appendChild(user.id);
     user.mainTag.appendChild(user.firstName);
