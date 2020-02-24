@@ -1,42 +1,38 @@
 "use strict"
 let userList = [];
-
-
-
-
+let correntArray;
 
 //консруктор пользователей
 const userConstructor = (operation) => {
-    let tagTr = document.createElement("tr");
-    let tagTd1 = document.createElement("td");
-    let tagTd2 = document.createElement("td");
-    let tagTd3 = document.createElement("td");
-    let tagTd4 = document.createElement("td");
-    tagTd1.innerHTML = document.getElementById('userId').value;
-    tagTd2.innerHTML = document.getElementById('userFirstName').value;
-    tagTd3.innerHTML = document.getElementById('userLastName').value;
-    tagTd4.innerHTML = document.getElementById('userAge').value;
     let user = {
-        mainTag     : tagTr,
-        id          : tagTd1,
-        firstName   : tagTd2,
-        lastName    : tagTd3,
-        age         : tagTd4,
+        mainTag     : document.createElement("tr"),
+        id          : document.createElement("td"),
+        firstName   : document.createElement("td"),
+        lastName    : document.createElement("td"),
+        age         : document.createElement("td"),
     };
-    if (user.id.innerHTML == "" || user.firstName.innerHTML == "" ||
-        user.lastName.innerHTML == "" || user.age.innerHTML == ""){
-        alert(`please insert all fields of user information`);
-    }
-    else{
+    user.id.innerHTML = document.getElementById('userId').value;
+    user.firstName.innerHTML = document.getElementById('userFirstName').value;
+    user.lastName.innerHTML = document.getElementById('userLastName').value;
+    user.age.innerHTML = document.getElementById('userAge').value;
+    if ((user.id.innerHTML != "" && user.firstName.innerHTML != "" &&
+        user.lastName.innerHTML != "" && user.age.innerHTML != "") ||
+        (operation == "reset" || operation == "read")){
         checkOperation(user, operation);
     }
+    else{
+        alert(`пожалуйста, введите все поля для заполнения информации`);
+    }
 }
-//проверяем операцию и выполняем действия
-const checkOperation = (user, operation) => {
+const clearInputFields = () => {
     document.getElementById('userId').value = "";
     document.getElementById('userFirstName').value = "";
     document.getElementById('userLastName').value = "";
     document.getElementById('userAge').value = "";
+}
+//проверяем операцию и выполняем действия
+const checkOperation = (user, operation) => {
+    clearInputFields();
     switch(operation){
         case "create":
             create(user);
@@ -50,7 +46,29 @@ const checkOperation = (user, operation) => {
         case "delete":
             delete_(user);
             break;
+        case "delete":
+            reset(user);
+            break;
     }
+    makeSimpleUsersList();
+    // let tempList = JSON.stringify(userList);
+    // localStorage.setItem('persone_state', tempList);
+    
+}
+// делаем простой обьект
+const makeSimpleUsersList = () => {
+    let tempUserList = [];
+    for(let count = 0; count < userList.length; count++){
+        let tempUser = {
+            id          : userList[count].id.innerHTML,
+            firstName   : userList[count].firstName.innerHTML,
+            lastName    : userList[count].lastName.innerHTML,
+            age         : userList[count].age.innerHTML,
+        }
+        tempUserList[count] = tempUser;
+    }
+    let tempList = JSON.stringify(tempUserList);
+    localStorage.setItem('persone_state', tempList);
 }
 // проверяет есть ли в глобальном массиве обьект с таким же главным ключем
 const checkGlobalUsersList = (user) =>{
@@ -69,7 +87,7 @@ const create = (user) =>{
         addUserIntoTable(user); 
     }
     else{
-        alert(`Sorry, but this id = ${user.id.innerHTML} is busy`);
+        alert(`Извините но такой id = ${user.id.innerHTML} уже существует`);
     }
 }
 //удаляем пользователя
@@ -78,7 +96,7 @@ const delete_ = (user) =>{
     for(let elem of userList){
         if (elem.id.innerHTML == user.id.innerHTML){
             userList.splice(count,1);
-            deleteUserFromTable(elem.mainTag);
+            deleteUserFromTable(elem);
             return;
         }
         count++;
@@ -100,28 +118,49 @@ const update = (user) =>{
     }
     alert("Пользователя с таким айди не было найдено");
 }
-// магическая и покрытая тайной и мраком функция read
+// рид, удаляет все с таблицы, потом парсит все с ЛокалСторэдж, преобразует в User и добавляет с помощью функции create
 const read = () =>{
-
+    userList.forEach(user => {
+        let list = document.querySelector(".mainTable");    
+        list.removeChild(user.mainTag);
+    });
+    let currentArray = JSON.parse(localStorage.getItem("persone_state"));
+    currentArray.forEach(user => {
+        create(createNewUserForRead(user.id, user.firstName, user.lastName, user.age));
+    });
 }
-
-//добавляем пользователей в таблицу
-const addUserIntoTable = (user) => {
+const createNewUserForRead = (_id, _firstName, _lastName, _age) =>{
+    let user = {
+        mainTag     : document.createElement("tr"),
+        id          : document.createElement("td"),
+        firstName   : document.createElement("td"),
+        lastName    : document.createElement("td"),
+        age         : document.createElement("td"),
+    };
+    user.id.innerHTML = _id;
+    user.firstName.innerHTML = _firstName;
+    user.lastName.innerHTML = _lastName;
+    user.age.innerHTML = _age;
+    return user;
+}
+//
+const addTagsToMainTag = (user) => {
     user.mainTag.appendChild(user.id);
     user.mainTag.appendChild(user.firstName);
     user.mainTag.appendChild(user.lastName);
     user.mainTag.appendChild(user.age);
+}
+//добавляем пользователей в таблицу
+const addUserIntoTable = (user) => {
     let list = document.querySelector(".mainTable");
+    addTagsToMainTag(user);
     list.appendChild(user.mainTag);
 }
 //удаляем пользователя из таблицы
 const deleteUserFromTable = (user) =>{
     let list = document.querySelector(".mainTable");
-    user.mainTag.appendChild(user.id);
-    user.mainTag.appendChild(user.firstName);
-    user.mainTag.appendChild(user.lastName);
-    user.mainTag.appendChild(user.age);
-    list.removeChild(user);
+    addTagsToMainTag(user);    
+    list.removeChild(user.mainTag);
 }
 
 
@@ -130,3 +169,4 @@ const updateUser = document.querySelector(".update").addEventListener("click", (
 const readUser = document.querySelector(".read").addEventListener("click", ()=>{userConstructor("read")});
 const deleteUser = document.querySelector(".delete").addEventListener("click", ()=>{userConstructor("delete")});
 const createUser = document.querySelector(".create").addEventListener("click", ()=>{userConstructor("create")});
+const resetUser = document.querySelector(".reset").addEventListener("click", ()=>{userConstructor("reset")});
