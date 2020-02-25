@@ -1,10 +1,16 @@
 "use strict"
 
+
 function Alist(element) {
     this.defaultArray = element;
     this.arr = [];
     this.constr();
 }
+//наследуемся
+const list = require('../list');
+Alist.prototype = Object.create(list.prototype);
+Alist.prototype.constructor = Alist;
+
 
 Alist.prototype.constr = function () {
     for (let count = 0; count < this.lengthOf(this.defaultArray); count++){
@@ -256,4 +262,3 @@ Alist.prototype.halfReverse = function () {
     }
     return this.arr;
 }
-
