@@ -50,9 +50,7 @@ const checkOperation = (user, operation) => {
             reset();
             break;
     }
-    if(operation != "reset"){
-        makeSimpleUsersList();
-    }
+    makeSimpleUsersList();
 }
 
 // проверяет есть ли в глобальном массиве обьект с таким же главным ключем
@@ -104,7 +102,6 @@ const update = (user) =>{
     alert("Пользователя с таким айди не было найдено");
 }
 const reset = () => {
-    alert();
     userList.forEach(user => {
         let list = document.querySelector(".mainTable");    
         list.removeChild(user.mainTag);
