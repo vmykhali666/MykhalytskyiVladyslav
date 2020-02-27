@@ -5,8 +5,6 @@ function List() {
 }
 List.prototype.constr = function () {
 }
-List.prototype.lengthOf = function (array) {
-}
 List.prototype.size = function () {
 }
 List.prototype.addStart = function (element) {
@@ -42,4 +40,4 @@ List.prototype.reverse = function () {
 List.prototype.halfReverse = function () {
 }
 
-module.exports = List;
+module.exports.List = List;

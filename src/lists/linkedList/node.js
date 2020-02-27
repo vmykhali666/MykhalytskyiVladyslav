@@ -1,6 +1,6 @@
 function Node(value){
-    this._value = value;
+    this._data = value;
     this.next = null;
 }
 
-module.exports = Node;
+module.exports.Node = Node;

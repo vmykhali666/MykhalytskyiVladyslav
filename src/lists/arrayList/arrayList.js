@@ -7,8 +7,8 @@ function Alist(element) {
     this.constr();
 }
 //наследуемся
-const list = require('../list');
-Alist.prototype = Object.create(list.prototype);
+const List = require('../list').List;
+Alist.prototype = Object.create(List.prototype);
 Alist.prototype.constructor = Alist;
 
 
