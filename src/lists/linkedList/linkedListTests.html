@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.js"></script>
+    <script>
+        mocha.setup('bdd');
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/2.0.0/chai.js"></script>
+    <script>
+        var assert = chai.assert;
+    </script>
+    <script src="arrayList.js"></script>
+    <script src="/src/lists/list.js" type="module"></script>
+
+</head>
+<body>
+    <div id="mocha"></div>
+    <script>
+        describe("constr",function() {
+            it("передаем [2]",function() {
+                assert.deepEqual(new Alist([2]).constr(), [2]);
+            });
+            it("создаем []",function() {
+                assert.deepEqual(new Alist([]).constr(), []);
+            });
+        });
+    </script>
+    <script>
+        mocha.run();
+    </script>
+</body>
+</html>
