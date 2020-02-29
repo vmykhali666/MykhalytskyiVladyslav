@@ -21,7 +21,7 @@ function arrayTask9_3Loader(inputArray){
 
 function arraytask9_1(inputArray){
     let length = inputArray.length;
-    for (let i = 0; i < length - 1; i++)
+    for (let i = 0; i < length - 1; i++){
         for (let j = i + 1; j < length; j++)
         {
             if (inputArray[i] > inputArray[j])
@@ -31,6 +31,7 @@ function arraytask9_1(inputArray){
                 inputArray[j] = temp;
             }
         }
+    }
     console.log(inputArray);
     return;
 }
