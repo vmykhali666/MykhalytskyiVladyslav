@@ -5,7 +5,7 @@ function Llist (value){
 
     let _defaultValue    = value;
     this._length        = 0;
-    this._headElement    = null;
+    this._root    = null;
     this.init(value);
     List.apply(this, arguments);
 }
@@ -29,10 +29,10 @@ Llist.prototype.init = function(value){
 //добавляем функции
 Llist.prototype.addEnd = function (value) {
     let node = new Node(value);
-    let currentNode = this.headElement;
+    let currentNode = this._root;
 
     if (!currentNode){
-        this.headElement = node;
+        this._root = node;
         this._length++;
         
         return this._length;
@@ -52,16 +52,16 @@ Llist.prototype.size = function () {
 }
 Llist.prototype.addStart = function (value) {
     let node = new Node(value);
-    let currentNode = this.headElement;
+    let currentNode = this._root;
 
     node.next = currentNode;
-    this.headElement = node;
+    this._root = node;
     this._length++;
     return this._length;
 }
 Llist.prototype.addPos = function(index, value){
     let node            = new Node(value);
-    let currentNode     = this.headElement;
+    let currentNode     = this._root;
     let nodeBefore      = null;
     let count           = 0;
 
@@ -85,15 +85,15 @@ Llist.prototype.addPos = function(index, value){
     return this._length;
 }
 Llist.prototype.delStart = function () {
-    let currentNode = this.headElement;
+    let currentNode = this._root;
     if (currentNode){
-        this.headElement = this.headElement.next;
+        this._root = this._root.next;
         this._length--;
         return currentNode._data;
     }
 }
 Llist.prototype.delEnd = function () {
-    let currentNode = this.headElement;
+    let currentNode = this._root;
     let nodeBefore  = null;
     
     
@@ -101,7 +101,7 @@ Llist.prototype.delEnd = function () {
         return;
     }
     if(!currentNode.next){
-        this.headElement = null;
+        this._root = null;
         this._length--;
         return  currentNode._data;
     }
@@ -117,7 +117,7 @@ Llist.prototype.delEnd = function () {
     return currentNode._data;
 }
 Llist.prototype.delPos = function (index) {
-    let currentNode     = this.headElement;
+    let currentNode     = this._root;
     let nodeBefore      = null;
     let count           = 0;
 
@@ -127,7 +127,7 @@ Llist.prototype.delPos = function (index) {
     }
 
     if (currentNode){
-        this.headElement = this.headElement.next;
+        this._root = this._root.next;
         this._length--;
         return currentNode._data;
     }
@@ -148,7 +148,7 @@ Llist.prototype.delPos = function (index) {
     return currentNode._data;
 }
 Llist.prototype.get = function (index) {
-    let currentNode     = this.headElement;
+    let currentNode     = this._root;
     let count           = 0;
 
     if (this._length == 0){
@@ -168,7 +168,7 @@ Llist.prototype.get = function (index) {
     return currentNode._data;
 }
 Llist.prototype.set = function (index, value) {
-    let currentNode     = this.headElement;
+    let currentNode     = this._root;
     let count           = 0;
 
     if (this._length == 0){
@@ -189,7 +189,7 @@ Llist.prototype.set = function (index, value) {
     return currentNode._data;
 }
 Llist.prototype.min = function () {
-    let currentNode     = this.headElement;
+    let currentNode     = this._root;
     let min;
 
     //если список пустой
@@ -209,7 +209,7 @@ Llist.prototype.min = function () {
     return min;
 }
 Llist.prototype.max = function () {
-    let currentNode     = this.headElement;
+    let currentNode     = this._root;
     let max;
 
     //если список пустой
@@ -229,7 +229,7 @@ Llist.prototype.max = function () {
     return max;    
 }
 Llist.prototype.sort = function () {
-    let currentNode = this.headElement;
+    let currentNode = this._root;
     let nextNode    = currentNode.next;
     let swap        = (currentNode, nodeAfter) => {
         let tempData = nodeAfter._data;
@@ -254,7 +254,7 @@ Llist.prototype.sort = function () {
     }
 }
 Llist.prototype.toString = function () {
-    let currentNode = this.headElement;
+    let currentNode = this._root;
     let str         = "";
 
     while(currentNode) {
@@ -266,12 +266,12 @@ Llist.prototype.toString = function () {
 }
 Llist.prototype.clear = function () {
     this._length            = 0;
-    this._headElement       = null;
+    this._root       = null;
 
     return _defaultValue;
 }
 Llist.prototype.minIndex = function () {
-    let currentNode     = this.headElement;
+    let currentNode     = this._root;
     let min;
     let count = 0;
     let minInd = 0;
@@ -295,7 +295,7 @@ Llist.prototype.minIndex = function () {
     return minInd;
 }
 Llist.prototype.maxIndex = function () {
-    let currentNode     = this.headElement;
+    let currentNode     = this._root;
     let max;
     let count = 0;
     let maxInd = 0;
@@ -319,8 +319,8 @@ Llist.prototype.maxIndex = function () {
     return maxInd;
 }
 Llist.prototype.reverse = function () {    
-    let currentNode = this.headElement; 
-    this.headElement = null;
+    let currentNode = this._root; 
+    this._root = null;
     this._length = 0;
     while(currentNode){
         this.addStart(currentNode._data);
@@ -328,7 +328,7 @@ Llist.prototype.reverse = function () {
     }
 }
 List.prototype.toArray = function(){
-    let currentNode = this.headElement;
+    let currentNode = this._root;
     let array = [];
 
     for (let count = 0; currentNode; currentNode = currentNode.next, count++){
@@ -359,7 +359,7 @@ Llist.prototype.halfReverse = function () {
         }
         array = tempArray;
     }
-    this.headElement = null;
+    this._root = null;
     this._length = 0;
     this.init(array);
 }

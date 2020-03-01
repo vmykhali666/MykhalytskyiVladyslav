@@ -4,15 +4,15 @@
 function Alist(element) {
     this.defaultArray = element;
     this.arr = [];
-    this.constr();
+    this.init();
 }
 //наследуемся
-const List = require('../list').List;
+const List = require('../../../list').List;
 Alist.prototype = Object.create(List.prototype);
 Alist.prototype.constructor = Alist;
 
 
-Alist.prototype.constr = function () {
+Alist.prototype.init = function () {
     for (let count = 0; count < this.lengthOf(this.defaultArray); count++){
         this.arr[count] = this.defaultArray[count];
     }
@@ -36,7 +36,7 @@ Alist.prototype.size = function () {
 }
 Alist.prototype.addStart = function (element) {
     let tempArray = [];
-    if (element){
+    if (element != undefined && element != null){
         tempArray[0] = element;
         for (let count = 0; count < this.size(); count++){
             tempArray[count + 1] = this.arr[count];
@@ -47,7 +47,7 @@ Alist.prototype.addStart = function (element) {
 }
 Alist.prototype.addEnd = function (element) {
     let tempArray = [];
-    if (element != undefined){
+    if (element != undefined && element != null){
         tempArray[this.size()] = element;
         for (let count = 0; count < this.size(); count++){
             tempArray[count] = this.arr[count];
@@ -140,54 +140,19 @@ Alist.prototype.max = function () {
     }
     return max;
 }
-Alist.prototype.sort = function () {                                                                      
-    if (this.size() != 0){
-        quickSort(this.arr, 0, this.size() - 1);
-        return this.arr;
-    }
-    else{
-        return [];
-    }
-    function Swap(inputArray, minIndex, maxIndex){
-        let temp = inputArray[minIndex];
-        inputArray[minIndex] = inputArray[maxIndex];
-        inputArray[maxIndex] = temp;
-    }
-    function Partition(inputArray, left, right) {
-        
-        let    i       = Math.ceil(left);
-        let    j       = Math.floor(right);
-        let pivot      = inputArray[Math.floor(Math.random() * (right - left)) + left];
-    
-        while (i <= j) {
-            while (inputArray[i] < pivot) {
-                i++;
-            }
-            while (inputArray[j] > pivot) {
-                j--;
-            }
-            if (i <= j) {
-                Swap(inputArray, i, j);
-                i++;
-                j--;
+Alist.prototype.sort = function () {   
+    let inputArray = this.arr;
+    let length = this.size();
+    for (let i = 0; i < length - 1; i++){
+        for (let j = i + 1; j < length; j++){
+            if (inputArray[i] > inputArray[j]){
+                var temp = inputArray[i];
+                inputArray[i] = inputArray[j];
+                inputArray[j] = temp;
             }
         }
-        return i;
     }
-    function quickSort(inputArray, minIndex, maxIndex) {
-        let index;
-        if (inputArray.length > 1) {
-            index = Partition(inputArray, minIndex, maxIndex);
-    
-            if (minIndex < index - 1) {
-                quickSort(inputArray, minIndex, index - 1);
-            }
-            if (index < maxIndex) {
-                quickSort(inputArray, index, maxIndex);
-            }
-        }
-        return inputArray;
-    }
+    this.arr = inputArray;
 }
 Alist.prototype.toString = function () {
     let str = "";
@@ -197,6 +162,7 @@ Alist.prototype.toString = function () {
     return str;
 }
 Alist.prototype.clear = function () {
+    this.init();
     return this.defaultArray;
 }
 Alist.prototype.minIndex = function () {
@@ -231,7 +197,7 @@ Alist.prototype.maxIndex = function () {
 }
 Alist.prototype.reverse = function () {
     let tempArray = [];
-    if (this.size() != 0){
+    if (this.size() > 1){
         for(let count = this.size() - 1, j = 0; count >= 0; count--, j++){
             tempArray[j] = this.arr[count];
         }
@@ -240,20 +206,21 @@ Alist.prototype.reverse = function () {
     return this.arr;
 }
 Alist.prototype.halfReverse = function () {
-    let tempArray = [];
     if (this.size() > 1){
-        let j = Math.floor(this.size() / 2) - 1;
+        let tempArray = [];
+        let half = Math.floor(this.size() / 2);
+        let j = half - 1;
         let isFloat = false;
         if (this.size() % 2 != 0){
             isFloat = true;
         }
         for (let count = 0; count < this.size(); count++,j--){
-            if (count == Math.floor(this.size() / 2) && isFloat){
+            if (count == half && isFloat){
                 tempArray[count] = this.arr[count];
                 j = this.size();
                 continue;
             }
-            if(count == Math.floor(this.size() / 2)){
+            else if(count == half){
                 j = this.size() - 1;
             }
             tempArray[count] = this.arr[j];
@@ -262,3 +229,4 @@ Alist.prototype.halfReverse = function () {
     }
     return this.arr;
 }
+module.exports.Alist = Alist;

@@ -3,7 +3,7 @@
 function List() {
 
 }
-List.prototype.constr = function () {
+List.prototype.init = function () {
 }
 List.prototype.size = function () {
 }
