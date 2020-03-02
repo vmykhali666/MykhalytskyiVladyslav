@@ -3,23 +3,6 @@ const calculate = require('../logic').calculate;
 
 describe("Plus",function() {
     it("передаем 4, 5",function() {
-        assert.equal(calculate.calculate("-", 4, 5), -1);
-    });
-    it("передаем 4 , 6",function() {
-        assert.equal(calculate.calculate("+", 4, 6), 10);
-    });
-    it("передаем 12 , -3",function() {
-        assert.equal(calculate.calculate("-", 12, -3), 15);
-    });
-    it("передаем -3, 0",function() {
-        assert.equal(calculate.calculate("+", -3, 0), -3);
-    });
-    it("передаем 3, 12.30",function() {
-        assert.equal(calculate.calculate("+",3, 12.30), 15.3);
-    });
-});
-describe("Plus",function() {
-    it("передаем 4, 5",function() {
         assert.equal(calculate.plus(4, 5), 9);
     });
     it("передаем 4 , 6",function() {
