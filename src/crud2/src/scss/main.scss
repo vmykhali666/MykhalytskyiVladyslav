@@ -1,0 +1,155 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+.mainContainer {
+  font-size: 20px;
+}
+
+.content {
+  width: 85%;
+  margin: 0 auto;
+}
+
+.buttons {
+  display: flex;
+  user-select: none;
+  margin: 20px auto;
+  flex-wrap: wrap;
+}
+
+.IDB,
+.LS {
+  max-width: 150px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.dataBases {
+  font-weight: bold;
+  max-width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 10px auto;
+}
+
+input {
+  min-width: 300px;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+.inputAreas {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.inputBtns {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+input[type="button"] {
+  font-size: 20px;
+  border: 0;
+  width: 100%;
+  max-width: 300px;
+}
+
+input[type="text"] {
+  border: 1px solid lightgray;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.IDB:hover,
+.LS:hover {
+  color: green;
+}
+
+input[type="button"]:hover {
+  cursor: pointer;
+  border-radius: 40px;
+  transition: 1000ms;
+  box-shadow: 0px 2px 10px black;
+}
+
+.inputBtns__input1[type="button"] {
+  background-color: #58ec58;
+}
+
+.inputBtns__input2[type="button"] {
+  background-color: #eef82f;
+}
+
+.inputBtns__input3[type="button"] {
+  background-color: #fb2d2d;
+}
+
+.outPutTable {
+  display: flex;
+  justify-content: space-around;
+  /* max-width: 70%; */
+  padding: 10px 0;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+}
+
+.dataBases__rb {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  margin: 10px 0 0 7px;
+}
+
+.dataBases__rb + label {
+  position: relative;
+  padding: 0 0 0 25px;
+  cursor: pointer;
+}
+
+.dataBases__rb + label:before {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 0;
+  width: 13px;
+  height: 13px;
+  border: 1px solid #cdd1da;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+.inputs {
+  width: 100%;
+  max-width: 1000px;
+}
+
+.dataBases__rb + label:after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 4px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: 0;
+  background-color: rgba(100, 100, 100, 0.733);
+  opacity: 0;
+  transition: 0.2s;
+}
+
+.dataBases__rb:checked + label:after {
+  opacity: 1;
+}
+
+.dataBases__rb:checked + label:before {
+  box-shadow: 0 0 0 3px rgba(62, 1, 131, 0.7);
+}
