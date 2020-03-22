@@ -1,47 +1,128 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>CRUD</title>
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700,800&display=swap" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="css/styles.css">
-</head>
-<body>
-<div class="container">
-    <div class="UI">
-        <div class="inputAreas">
-            <input type="text" id="userId"  value="" class="inputText id" placeholder="id">
-            <input type="text" id="userFirstName" value="" class="inputText firstName" placeholder="first name">
-            <input type="text" id="userLastName" value="" class="inputText lastName" placeholder="last name">
-            <input type="text" id="userAge" value="" class="inputText age" placeholder="age">
+  <head>
+    <title>CRUD</title>
+    <meta name="keywords" content="create read update delete person data" />
+    <meta name="description" content="The best account-control system ever" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="content-language" content="eng" />
+    <meta http-equiv="refresh" content="" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="author" content="Vlad" />
+    <meta name="copyright" content="All rights belongs" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700,800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="main_container">
+      <div class="content">
+        <div class="content__h1">
+          <span class="content_span1">crud</span>
+          <span class="content_span2"
+            >data<span class="content_span3">base</span></span
+          >
         </div>
         <div class="buttons">
-            <div class = "radio">
-                <div>
-                    <input type="radio" name="t1" id="_localStorage" value = "_localStorage" checked><label for="_localStorage">Local Storage</label>
-                </div> 
-                <div>
-                    <input type="radio" name="t1" id="_indexedDB" value = "_indexedDB"><label  for="_indexedDB">indexedDB</label>
-                </div>
+          <div class="data_bases">
+            <div class="ls">
+              <input
+                class="data_bases__rb"
+                type="radio"
+                id="ls_db"
+                name="radio_btn"
+                value="ls"
+                checked
+              />
+              <label for="ls_db">Local Storage</label>
             </div>
-            <div class="second">
-                <input type="button" class="button create" value="create">
-                <input type="button" class="button read" value="read">
-                <input type="button" class="button update" value="update">
-                <input type="button" class="button delete" value="delete">
-                <input type="button" class="button reset" value="reset">
+            <div class="idb">
+              <input
+                class="data_bases__rb"
+                type="radio"
+                id="idb_db"
+                name="radio_btn"
+                value="idb"
+              />
+              <label for="idb_db">Indexed DB</label>
             </div>
+          </div>
+          <div class="inputs">
+            <div class="input_areas">
+              <input
+                type="text"
+                name="id"
+                placeholder="id"
+                class="input_areas__input"
+              />
+              <input
+                type="text"
+                name="age"
+                placeholder="age"
+                class="input_areas__input"
+              />
+              <input
+                type="text"
+                name="first name"
+                placeholder="first name"
+                class="input_areas__input"
+              />
+              <input
+                type="text"
+                name="email"
+                placeholder="email"
+                class="input_areas__input"
+              />
+              <input
+                type="text"
+                name="last name"
+                placeholder="last name"
+                class="input_areas__input"
+              />
+              <input
+                type="text"
+                name="phone number"
+                placeholder="phone number"
+                class="input_areas__input"
+              />
+            </div>
+            <div class="input_btns">
+              <input
+                type="button"
+                value="create"
+                class="input_btns__input input_btns__input1"
+              />
+              <input
+                type="button"
+                value="update"
+                class="input_btns__input input_btns__input2"
+              />
+              <input
+                type="button"
+                value="delete"
+                class="input_btns__input input_btns__input3"
+              />
+            </div>
+          </div>
         </div>
-            <table class="mainTable">
-                <caption>Таблица пользователей</caption>
-                    <tr class="test">
-                        <th class="test_1">id</th>
-                        <th class="test_1">first name</th>
-                        <th class="test_1">last name</th>
-                        <th class="test_1">age</th>
-                    </tr>
-            </table>
+        <table class="table">
+          <tbody class="table-body">
+            <tr class="out-put-table-header">
+              <td class="out-put-table-header-id">ID</td>
+              <td class="out-put-table-header-fn">First Name</td>
+              <td class="out-put-table-header-ln">Last Name</td>
+              <td class="out-put-table-header-age">Age</td>
+              <td class="out-put-table-header-email">Email</td>
+              <td class="out-put-table-header-phone">Phone number</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-</div>
-	<script src="js/index.js"></script>
-</body>
+    <script src="js/index.js"></script>
+  </body>
 </html>

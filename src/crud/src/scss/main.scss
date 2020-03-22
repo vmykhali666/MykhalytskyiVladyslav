@@ -1,72 +1,210 @@
-*{
-    margin: 0;
-    padding: 0;
-}
-.UI{
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-}
-input{
-    margin:20px;
-    padding:10px;
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
 }
 
-.buttons{
-    display: flex;
-    width: 1000px;
-    justify-content: space-evenly;
-    align-items: center;
-    
-}
-.buttons input{
-    cursor: pointer;
-    border: 0px;
-}
-.buttons input:hover{
-    background-color: aqua;
-    transition: 1000ms ease;
-}
-.inputArea {
-    width: 1000px;
-    display: flex;
-    justify-content: space-between;
-}
-table{
-    text-align: center;
-    user-select: none;
-    margin-top: 20px;
-    width: 800px;
-    border: 2px solid #000000;
-    border-collapse: collapse;
+.main_container {
+  font-size: 1.1em;
 }
 
-th {
-    background-color: dimgray;
-} 
-td{
-    border: 2px solid #000000;
-}
-.read{
-    display: none;
-}
-.radio{
-    display: flex;
-    flex-direction: column;
-}
-caption{
-    font-size: 30px;
-    margin-bottom: 20px;
-    font-weight: 600;
-}
-.test > .test_1 {
-    padding: 10px;
-    border: 1px solid black;
-    font-size: 22px;
-}
-.container {
-    width: 1000px;
-    margin: 0 auto;
-    height: 100vh;
+.content {
+  width: 79%;
+  margin: 0 auto;
 }
 
+.content__h1 {
+  font-size: 1.6rem;
+  display: inline-block;
+  user-select: none;
+  margin-top: 10px;
+  width: 100%;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: purple;
+  letter-spacing: 15px;
+  border-radius: 70px;
+  font-weight: bold;
+}
+
+.content_span1 {
+  color: green;
+}
+
+.content_span2 {
+  color: yellow;
+}
+
+.content_span3 {
+  color: red;
+}
+
+.buttons {
+  display: flex;
+  user-select: none;
+  margin: 20px auto;
+  flex-wrap: wrap;
+}
+
+.idb,
+.ls {
+  max-width: 150px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.data_bases {
+  font-weight: bold;
+  max-width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 10px auto;
+}
+
+.inputs input {
+  min-width: 300px;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+.input_areas {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.input_btns {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.input_btns input {
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 600;
+  color: black;
+  font-family: Montserrat, sans-serif;
+  border: 0;
+  width: 100%;
+  max-width: 300px;
+  transition: all 0.6s;
+}
+
+.input_areas input {
+  border: 1px solid lightgray;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.idb:hover,
+.ls:hover {
+  color: green;
+}
+
+.input_areas input:focus {
+  outline: rgba(43, 171, 43, 0.6) solid 2px;
+}
+
+.input_btns input:hover {
+  cursor: pointer;
+  border-radius: 40px;
+  box-shadow: 0px 2px 10px black;
+}
+
+.input_btns__input1[type="button"] {
+  background-color: #58ec58;
+}
+
+.input_btns__input2[type="button"] {
+  background-color: #eef82f;
+}
+
+.input_btns__input3[type="button"] {
+  background-color: #fb2d2d;
+}
+
+.out-put-table-header,
+.table-row {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+}
+
+.table {
+  width: 100%;
+}
+
+.table-row {
+  font-size: 0.9em;
+  border-top: none;
+  border-bottom: 1px solid black;
+}
+
+.data_bases__rb {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+
+.data_bases__rb + label {
+  position: relative;
+  padding: 0 0 0 25px;
+  cursor: pointer;
+}
+
+.data_bases__rb + label:before {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 0;
+  width: 13px;
+  height: 13px;
+  border: 1px solid #cdd1da;
+  border-radius: 50%;
+  background-color: #fff;
+  transition: box-shadow 1s;
+}
+
+.data_bases__rb + label::after {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 0;
+  width: 13px;
+  opacity: 0;
+  height: 13px;
+  border: 1px solid black;
+  border-radius: 50%;
+  background-color: black;
+  transition: transform 2s;
+}
+
+.data_bases__rb:checked + label:after {
+  transform: scale(0);
+  opacity: 1;
+}
+
+.inputs {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.data_bases__rb:checked + label:before {
+  animation: puls-radio 1s infinite;
+}
+
+@keyframes puls-radio {
+  0% {
+    box-shadow: 0 0 0 0px rgba(62, 1, 131, 0.7);
+  }
+  100% {
+    box-shadow: 0 0 0 4px rgba(62, 1, 131, 0.7);
+  }
+}
