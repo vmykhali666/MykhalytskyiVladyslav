@@ -4,13 +4,39 @@
   box-sizing: border-box;
 }
 
-.mainContainer {
-  font-size: 20px;
+.main_container {
+  font-size: 1.1em;
 }
 
 .content {
-  width: 85%;
+  width: 79%;
   margin: 0 auto;
+}
+
+.content__h1 {
+  font-size: 1.6rem;
+  display: inline-block;
+  user-select: none;
+  margin-top: 10px;
+  width: 100%;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: purple;
+  letter-spacing: 15px;
+  border-radius: 70px;
+  font-weight: bold;
+}
+
+.content_span1 {
+  color: green;
+}
+
+.content_span2 {
+  color: yellow;
+}
+
+.content_span3 {
+  color: red;
 }
 
 .buttons {
@@ -20,14 +46,14 @@
   flex-wrap: wrap;
 }
 
-.IDB,
-.LS {
+.idb,
+.ls {
   max-width: 150px;
   width: 100%;
   margin-bottom: 10px;
 }
 
-.dataBases {
+.data_bases {
   font-weight: bold;
   max-width: 200px;
   display: flex;
@@ -38,84 +64,101 @@
   margin: 10px auto;
 }
 
-input {
+.inputs input {
   min-width: 300px;
   padding: 5px;
   margin-bottom: 5px;
 }
 
-.inputAreas {
+.input_areas {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
 }
 
-.inputBtns {
+.input_btns {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
 }
 
-input[type="button"] {
-  font-size: 20px;
+.input_btns input {
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 600;
+  color: black;
+  font-family: Montserrat, sans-serif;
   border: 0;
   width: 100%;
   max-width: 300px;
+  transition: all 0.6s;
 }
 
-input[type="text"] {
+.input_areas input {
   border: 1px solid lightgray;
   border-radius: 8px;
   margin-bottom: 15px;
 }
 
-.IDB:hover,
-.LS:hover {
+.idb:hover,
+.ls:hover {
   color: green;
 }
 
-input[type="button"]:hover {
+.input_areas input:focus {
+  outline: rgba(43, 171, 43, 0.6) solid 2px;
+}
+
+.input_btns input:hover {
   cursor: pointer;
   border-radius: 40px;
-  transition: 1000ms;
   box-shadow: 0px 2px 10px black;
 }
 
-.inputBtns__input1[type="button"] {
+.input_btns__input1[type="button"] {
   background-color: #58ec58;
 }
 
-.inputBtns__input2[type="button"] {
+.input_btns__input2[type="button"] {
   background-color: #eef82f;
 }
 
-.inputBtns__input3[type="button"] {
+.input_btns__input3[type="button"] {
   background-color: #fb2d2d;
 }
 
-.outPutTable {
+.out-put-table-header,
+.table-row {
   display: flex;
   justify-content: space-around;
-  /* max-width: 70%; */
   padding: 10px 0;
   border-top: 2px solid black;
   border-bottom: 2px solid black;
 }
 
-.dataBases__rb {
+.table {
+  width: 100%;
+}
+
+.table-row {
+  font-size: 0.9em;
+  border-top: none;
+  border-bottom: 1px solid black;
+}
+
+.data_bases__rb {
   position: absolute;
   z-index: -1;
   opacity: 0;
-  margin: 10px 0 0 7px;
 }
 
-.dataBases__rb + label {
+.data_bases__rb + label {
   position: relative;
   padding: 0 0 0 25px;
   cursor: pointer;
 }
 
-.dataBases__rb + label:before {
+.data_bases__rb + label:before {
   content: "";
   position: absolute;
   top: 1px;
@@ -125,31 +168,43 @@ input[type="button"]:hover {
   border: 1px solid #cdd1da;
   border-radius: 50%;
   background-color: #fff;
+  transition: box-shadow 1s;
+}
+
+.data_bases__rb + label::after {
+  content: "";
+  position: absolute;
+  top: 1px;
+  left: 0;
+  width: 13px;
+  opacity: 0;
+  height: 13px;
+  border: 1px solid black;
+  border-radius: 50%;
+  background-color: black;
+  transition: transform 2s;
+}
+
+.data_bases__rb:checked + label:after {
+  transform: scale(0);
+  opacity: 1;
 }
 
 .inputs {
+  margin: 0 auto;
   width: 100%;
   max-width: 1000px;
 }
 
-.dataBases__rb + label:after {
-  content: "";
-  position: absolute;
-  top: 5px;
-  left: 4px;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  border: 0;
-  background-color: rgba(255, 255, 255, 0.733);
-  opacity: 0;
-  transition: 0.2s;
+.data_bases__rb:checked + label:before {
+  animation: puls-radio 1s infinite;
 }
 
-.dataBases__rb:checked + label:after {
-  opacity: 1;
-}
-
-.dataBases__rb:checked + label:before {
-  box-shadow: 0 0 0 3px rgba(62, 1, 131, 0.7);
+@keyframes puls-radio {
+  0% {
+    box-shadow: 0 0 0 0px rgba(62, 1, 131, 0.7);
+  }
+  100% {
+    box-shadow: 0 0 0 4px rgba(62, 1, 131, 0.7);
+  }
 }

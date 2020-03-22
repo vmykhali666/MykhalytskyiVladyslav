@@ -26,8 +26,7 @@ module.exports = {
         jsxBracketSameLine: false,
         jsxSingleQuote: false,
         printWidth: 100,
-        semi: true,
-        singleQuote: true,
+        singleQuote: false,
         tabWidth: 2,
         trailingComma: "all",
         useTabs: false,
@@ -43,12 +42,7 @@ module.exports = {
     "no-restricted-syntax": "off",
     "function-paren-newline": "off",
     "no-param-reassign": "off",
-    "no-plusplus": [
-      "error",
-      {
-        allowForLoopAfterthoughts: true
-      }
-    ],
+    "no-plusplus": "off",
     strict: "off",
     "no-shadow": "off",
     "no-alert": "off",
@@ -57,12 +51,8 @@ module.exports = {
     "prefer-const": "warn",
     "jsx-a11y/href-no-hash": "off",
     "jsx-a11y/anchor-is-valid": "off",
-    "no-use-before-define": [
-      "error",
-      {
-        functions: false
-      }
-    ],
+
+    "no-use-before-define": "off",
     "import/no-extraneous-dependencies": "warn",
     "no-console": ["error", { allow: ["error"] }],
     "import/no-extraneous-dependencies": "warn",
